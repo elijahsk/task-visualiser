@@ -1,29 +1,62 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <div className="App-header">
-//           <img src={logo} className="App-logo" alt="logo" />
-//           <h2>Welcome to React</h2>
-//         </div>
-//         <p className="App-intro">
-//           To get started, edit <code>src/App.js</code> and save to reload.
-//         </p>
-//       </div>
-//     );
-//   }
-// }
+class TaskParent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tasks: []
+    };
+
+    this.concat = this.concat.bind(this);
+  }
+
+  concat(props) {
+    console.log("concat");
+    const taskName = props.taskName;
+    this.setState({
+      tasks: this.state.tasks.concat(taskName)
+    });
+  }
+
+  render() {
+    return;
+    <div>
+      <TaskForm concat={this.concat} />
+      <TaskList tasks={this.state.tasks} />
+    </div>;
+  }
+}
+
+class TaskList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = [];
+  }
+
+  render() {
+    const tasks = this.props.tasks;
+    return (
+      <div>
+        {this.props.tasks.map(task => {
+          return (
+            <div>
+              {task}
+            </div>
+          );
+        })};
+      </div>
+    );
+  }
+}
 
 class TaskForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      taskName: '',
-      taskDescription: ''
+      taskName: "",
+      taskDescription: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -32,7 +65,7 @@ class TaskForm extends React.Component {
 
   handleChange(event) {
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
 
     this.setState({
@@ -41,31 +74,35 @@ class TaskForm extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log(this.state.taskName);
-    console.log(this.state.taskDescription);
     event.preventDefault();
+    console.log(this);
+
+    this.props.concat(this.state);
   }
 
   render() {
+    console.log(this.state);
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
           Task Name:
-          <input 
+          <input
             name="taskName"
-            type="text" 
-            value={this.state.taskName} 
-            onChange={this.handleChange} />
+            type="text"
+            value={this.state.taskName}
+            onChange={this.handleChange}
+          />
         </label>
         <label>
           Task Description:
-          <textarea 
-          name="taskDescription"
-          type="text area"
-          value = {this.state.taskDescription}
-          onChange={this.handleChange} />
+          <textarea
+            name="taskDescription"
+            type="text area"
+            value={this.state.taskDescription}
+            onChange={this.handleChange}
+          />
         </label>
-        <input type="submit" value="Submit"/>
+        <input type="submit" value="Submit" />
       </form>
     );
   }
