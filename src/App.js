@@ -21,27 +21,28 @@ class TaskParent extends React.Component {
   }
 
   render() {
-    return;
-    <div>
-      <TaskForm concat={this.concat} />
-      <TaskList tasks={this.state.tasks} />
-    </div>;
+    return (
+      <div>
+        <TaskForm concat={this.concat} />
+        <TaskList tasks={this.state.tasks} />
+      </div>
+    );
   }
 }
 
 class TaskList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = [];
+    this.state = {};
   }
 
   render() {
     const tasks = this.props.tasks;
     return (
       <div>
-        {this.props.tasks.map(task => {
+        {this.props.tasks.map((task, index) => {
           return (
-            <div>
+            <div key={index}>
               {task}
             </div>
           );
@@ -55,8 +56,7 @@ class TaskForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      taskName: "",
-      taskDescription: ""
+      taskName: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -93,19 +93,10 @@ class TaskForm extends React.Component {
             onChange={this.handleChange}
           />
         </label>
-        <label>
-          Task Description:
-          <textarea
-            name="taskDescription"
-            type="text area"
-            value={this.state.taskDescription}
-            onChange={this.handleChange}
-          />
-        </label>
         <input type="submit" value="Submit" />
       </form>
     );
   }
 }
 
-export default TaskForm;
+export default TaskParent;
