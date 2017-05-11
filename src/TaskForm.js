@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class TaskForm extends Component {
   constructor(props) {
@@ -41,7 +42,25 @@ class TaskForm extends Component {
             onChange={this.handleChange}
           />
         </label>
-        <input type="submit" value="Submit" />
+        <button
+          onClick={() => {
+            axios
+              .post("http://localhost:9000" + "/submitInfo", {
+                data: {
+                  title: this.state.taskName
+                }
+              })
+              .then(res => {
+                console.log(res);
+              })
+              .catch(err => {
+                console.log(err);
+                alert("there is an error!");
+              });
+          }}
+        >
+          Submit
+        </button>
       </form>
     );
   }
