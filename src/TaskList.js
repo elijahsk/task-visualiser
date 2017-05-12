@@ -37,7 +37,6 @@ class TaskList extends React.Component {
         console.log(response, "Did mount");
         const tasks = response.data;
         console.log(tasks);
-        console.log(tasks[0].title);
         this.props.concatTasks(tasks.map(task => task.title));
       })
       .catch(function(error) {

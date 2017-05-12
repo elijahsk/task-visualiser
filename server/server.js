@@ -5,8 +5,8 @@ const passport = require("passport");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-const User = require("./userSchema.js");
-const taskSchema = require("./taskSchema.js");
+const User = require("./model/user.js");
+const taskSchema = require("./model/task.js");
 
 let app = express();
 
