@@ -12,6 +12,7 @@ class Signup extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(event) {
     const target = event.target;
@@ -23,9 +24,27 @@ class Signup extends Component {
     });
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    axios
+      .post("http://localhost:9000/signup", {
+        username: this.state.username,
+        password: this.state.password // need to encrypt
+      })
+      .then(res => {
+        console.log(res);
+        alert("signup response");
+        if (res.status === 201) alert("Signup successfully");
+        else alert("Error in signup");
+      })
+      .catch(err => {
+        console.log("xxx");
+        alert("there is an error!");
+      });
+  }
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <label>
           Username:
           <input name="username" type="text" onChange={this.handleChange} />
@@ -42,26 +61,7 @@ class Signup extends Component {
             onChange={this.handleChange}
           />
         </label>
-        <button
-          onClick={event => {
-            event.preventDefault();
-            axios
-              .post("http://localhost:9000/signup", {
-                username: this.state.username,
-                password: this.state.password // need to encrypt
-              })
-              .then(res => {
-                console.log(res);
-                alert("signup response");
-                if (res.status === 201) alert("Signup successfully");
-                else alert("Error in signup");
-              })
-              .catch(err => {
-                console.log("xxx");
-                alert("there is an error!");
-              });
-          }}
-        >
+        <button>
           Submit
         </button>
       </form>

@@ -1,6 +1,4 @@
 import { connect } from "react-redux";
-import TaskForm from "../TaskForm.js";
-import TaskList from "../TaskList.js";
 import Tasks from "../Tasks.js";
 
 const mapStateToProps = state => {

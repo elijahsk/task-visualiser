@@ -21,6 +21,19 @@ class EditTask extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.editTask(this.state.taskName);
+    axios
+      .post("http://localhost:9000/submitInfo", {
+        data: {
+          title: this.state.taskName
+        }
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+        alert("there is an error!");
+      });
   }
 
   render() {
@@ -32,23 +45,7 @@ class EditTask extends React.Component {
             value={this.state.taskName}
             onChange={this.handleChange}
           />
-          <button
-            onClick={() => {
-              axios
-                .post("http://localhost:9000/submitInfo", {
-                  data: {
-                    title: this.state.taskName
-                  }
-                })
-                .then(res => {
-                  console.log(res);
-                })
-                .catch(err => {
-                  console.log(err);
-                  alert("there is an error!");
-                });
-            }}
-          >
+          <button>
             Submit
           </button>
         </form>
