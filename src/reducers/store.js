@@ -1,13 +1,6 @@
 import { createStore, compose, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
 
-// const initialState = {
-//     tasks: []
-// };
-
-// state = [];
-
-//basic version, usually its bigger and more various, refer to example below
 const reducer = (state = { tasks: [] }, action) => {
     console.log("action", action);
     switch (action.type) {
@@ -18,7 +11,6 @@ const reducer = (state = { tasks: [] }, action) => {
             };
         }
         case "ADD_TASK":
-            // console.log(state.tasks.concat(action.taskName));
             return {
                 tasks: state.tasks.concat(action.taskName)
             };

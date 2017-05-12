@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Provider } from "react-redux";
 import { initStore } from "./reducers/store.js";
-import Tasks from "./Tasks.js";
+import TasksContainer from "./containers/TasksContainer.js";
 
 class TaskVisualiser extends Component {
   render() {
@@ -15,7 +15,7 @@ class TaskVisualiser extends Component {
           <h2>Welcome to React</h2>
         </div>
         <Provider store={initStore()}>
-          <Tasks />
+          <TasksContainer />
         </Provider>
       </div>
     );
