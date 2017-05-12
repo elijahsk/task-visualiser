@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { Provider } from "react-redux";
-import { initStore } from "./store.js";
+import { initStore } from "./reducers/store.js";
 import Tasks from "./Tasks.js";
 
-class App extends Component {
+class TaskVisualiser extends Component {
   render() {
     console.log(initStore);
     return (
@@ -22,4 +22,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default TaskVisualiser;

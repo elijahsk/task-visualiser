@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import App from "./App.js";
+import TaskVisualiser from "./TaskVisualiser.js";
 import Signin from "./Signin.js";
 import Signup from "./Signup.js";
 import "./index.css";
@@ -11,14 +11,14 @@ ReactDOM.render(
 	<Router>
 		<div>
 			<ul>
-				<li><Link to="/">Home</Link></li>
+				<li><Link to="/tasks">Home</Link></li>
 				<li><Link to="/signin">Signin</Link></li>
 				<li><Link to="/signup">Signup</Link></li>
 			</ul>
 
 			<hr />
 
-			<Route exact path="/" component={App} />
+			<Route exact path="/tasks" component={TaskVisualiser} />
 			<Route path="/signin" component={Signin} />
 			<Route path="/signup" component={Signup} />
 		</div>
