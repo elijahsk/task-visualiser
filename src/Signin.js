@@ -1,17 +1,17 @@
 import React, { Component } from "react";
+import "./App.css";
 import axios from "axios";
 
-class TaskForm extends Component {
+class Signin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      taskName: ""
+      username: "",
+      password: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
-
   handleChange(event) {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
@@ -22,36 +22,31 @@ class TaskForm extends Component {
     });
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    // console.log(this.state);
-    // console.log("form");
-    this.props.addTask(this.state);
-  }
-
   render() {
-    //console.log(this.state);
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form>
         <label>
-          Task Name:
-          <input
-            name="taskName"
-            type="text"
-            value={this.state.taskName}
-            onChange={this.handleChange}
-          />
+          Username:
+          <input name="username" type="text" onChange={this.handleChange} />
+        </label>
+        <label>
+          Password:
+          <input name="password" type="password" onChange={this.handleChange} />
         </label>
         <button
-          onClick={() => {
+          onClick={event => {
+            event.preventDefault();
+            console.log(this.state);
             axios
-              .post("http://localhost:9000/submitInfo", {
-                data: {
-                  title: this.state.taskName
-                }
+              .post("http://localhost:9000/signin", {
+                username: this.state.username,
+                password: this.state.password,
+                withCredentials: true
               })
               .then(res => {
                 console.log(res);
+                if (res.status === 500) alert("Invalid username / password");
+                else alert("Signin successfully");
               })
               .catch(err => {
                 console.log(err);
@@ -66,4 +61,4 @@ class TaskForm extends Component {
   }
 }
 
-export default TaskForm;
+export default Signin;

@@ -2,7 +2,7 @@ const mongoose = require("./mongoose.js");
 const Schema = mongoose.Schema;
 
 const tempSchema = mongoose.model(
-    "Temp",
+    "Tasks",
     new Schema(
         {
             title: { type: Schema.Types.String }

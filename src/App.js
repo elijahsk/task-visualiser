@@ -4,7 +4,6 @@ import "./App.css";
 import { Provider } from "react-redux";
 import { initStore } from "./store.js";
 import Tasks from "./Tasks.js";
-import axios from "axios";
 
 class App extends Component {
   render() {

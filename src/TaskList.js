@@ -1,5 +1,24 @@
-import React, { Component } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import ToggleTask from "./ToggleTask.js";
+import axios from "axios";
+
+const mapStateToProps = state => {
+  return {
+    tasks: state.tasks
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  concatTasks: tasks => {
+    // console.log(task);
+    // console.log("addTask");
+    return dispatch({
+      type: "CONCAT_TASKS",
+      tasks: tasks
+    });
+  }
+});
 
 class TaskList extends React.Component {
   constructor(props) {
@@ -7,6 +26,23 @@ class TaskList extends React.Component {
     this.state = {};
 
     this.editTask = this.editTask.bind(this);
+  }
+
+  componentDidMount() {
+    console.log("Did mount test", this.props);
+
+    axios
+      .get("http://localhost:9000/taskList")
+      .then(response => {
+        console.log(response, "Did mount");
+        const tasks = response.data;
+        console.log(tasks);
+        console.log(tasks[0].title);
+        this.props.concatTasks(tasks.map(task => task.title));
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   editTask(taskName, index) {
@@ -31,4 +67,4 @@ class TaskList extends React.Component {
   }
 }
 
-export default TaskList;
+export default connect(mapStateToProps, mapDispatchToProps)(TaskList);

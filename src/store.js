@@ -11,6 +11,12 @@ import thunkMiddleware from "redux-thunk";
 const reducer = (state = { tasks: [] }, action) => {
     console.log("action", action);
     switch (action.type) {
+        case "CONCAT_TASKS": {
+            let tasks = action.tasks || [];
+            return {
+                tasks: tasks.concat(state.tasks)
+            };
+        }
         case "ADD_TASK":
             // console.log(state.tasks.concat(action.taskName));
             return {

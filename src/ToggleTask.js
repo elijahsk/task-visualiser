@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import EditTask from "./EditTask.js";
 
 class ToggleTask extends React.Component {
@@ -27,6 +27,7 @@ class ToggleTask extends React.Component {
 
   render() {
     const isEditing = this.state.isEditing;
+
     if (isEditing) {
       return <EditTask task={this.props.task} editTask={this.editTask} />;
     } else {

@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
+import axios from "axios";
 
 class EditTask extends React.Component {
   constructor(props) {
@@ -31,7 +32,25 @@ class EditTask extends React.Component {
             value={this.state.taskName}
             onChange={this.handleChange}
           />
-          <input type="submit" value="Submit" />
+          <button
+            onClick={() => {
+              axios
+                .post("http://localhost:9000/submitInfo", {
+                  data: {
+                    title: this.state.taskName
+                  }
+                })
+                .then(res => {
+                  console.log(res);
+                })
+                .catch(err => {
+                  console.log(err);
+                  alert("there is an error!");
+                });
+            }}
+          >
+            Submit
+          </button>
         </form>
       </div>
     );
