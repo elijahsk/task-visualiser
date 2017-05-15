@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import EditTask from "../EditTask.js";
+import EditTask from "../components/EditTask.js";
 
 const mapStateToProps = state => {
   return {

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import logo from "../logo.svg";
+import "../App.css";
 import { Provider } from "react-redux";
-import { initStore } from "./reducers/store.js";
-import TasksContainer from "./containers/TasksContainer.js";
+import { initStore } from "../reducers/store.js";
+import TasksContainer from "../containers/TasksContainer.js";
 
 class TaskVisualiser extends Component {
   render() {

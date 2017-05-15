@@ -1,5 +1,5 @@
 import React from "react";
-import EditTaskContainer from "./containers/EditTaskContainer.js";
+import EditTaskContainer from "../containers/EditTaskContainer.js";
 
 class ToggleTask extends React.Component {
   constructor(props) {
