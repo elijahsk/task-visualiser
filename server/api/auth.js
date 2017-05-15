@@ -6,7 +6,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 
-const User = require("../userSchema.js");
+const User = require("../model/user.js");
 
 passport.use(
 	"local-signup",

@@ -20,7 +20,7 @@ class EditTask extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.editTask(this.state.taskName);
+    this.props.editTask(this.state.taskName, this.props.index);
     axios
       .post("http://localhost:9000/submitInfo", {
         data: {

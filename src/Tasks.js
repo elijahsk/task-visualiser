@@ -16,7 +16,7 @@ export class Tasks extends Component {
     return (
       <div>
         <TaskForm addTask={this.props.addTask} />
-        <TaskList tasks={this.props.tasks} editTask={this.props.editTask} />
+        <TaskList tasks={this.props.tasks} />
       </div>
     );
   }

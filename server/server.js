@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const User = require("./model/user.js");
-const taskSchema = require("./model/task.js");
+const Task = require("./model/task.js");
 
 let app = express();
 
@@ -77,8 +77,7 @@ app.all("*", (req, res, next) => {
 // });
 
 app.post("/submitInfo", (req, res) => {
-	taskSchema
-		.create(Object.assign({}, req.body.data))
+	Task.create(Object.assign({}, req.body.data))
 		.then(data => {
 			console.log(data);
 			res.sendStatus(200);
@@ -91,7 +90,7 @@ app.post("/submitInfo", (req, res) => {
 
 app.get("/taskList", (req, res) => {
 	console.log("taskList server before");
-	var query = taskSchema.find();
+	var query = Task.find();
 	query.exec(function(error, tasks) {
 		if (error) alert("Error in database data retrieval");
 		console.log(tasks, "taskList server");

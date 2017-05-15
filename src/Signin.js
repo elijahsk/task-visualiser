@@ -53,9 +53,7 @@ class Signin extends Component {
           Password:
           <input name="password" type="password" onChange={this.handleChange} />
         </label>
-        <button>
-          Submit
-        </button>
+        <button> Submit </button>
       </form>
     );
   }

@@ -1,5 +1,5 @@
 import React from "react";
-import EditTask from "./EditTask.js";
+import EditTaskContainer from "./containers/EditTaskContainer.js";
 
 class ToggleTask extends React.Component {
   constructor(props) {
@@ -8,7 +8,6 @@ class ToggleTask extends React.Component {
       isEditing: false
     };
     this.handleToggle = this.handleToggle.bind(this);
-    this.editTask = this.editTask.bind(this);
   }
 
   handleToggle(event) {
@@ -17,19 +16,13 @@ class ToggleTask extends React.Component {
     });
   }
 
-  editTask(taskName) {
-    //console.log(prop);
-    //console.log(this.props);
-    const index = this.props.index;
-    this.props.editTask(taskName, index);
-    this.handleToggle();
-  }
-
   render() {
     const isEditing = this.state.isEditing;
 
     if (isEditing) {
-      return <EditTask task={this.props.task} editTask={this.editTask} />;
+      return (
+        <EditTaskContainer task={this.props.task} index={this.props.index} />
+      );
     } else {
       return <p onClick={this.handleToggle}>{this.props.task}</p>;
     }
