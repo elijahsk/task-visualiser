@@ -18,6 +18,10 @@ const taskReducer = (state = { tasks: [] }, action) => {
                     .concat(action.taskName)
                     .concat(state.tasks.slice(action.index + 1))
             };
+        case "LOGOUT_USER":
+            return {
+                tasks: []
+            };
         default:
             return state;
     }
