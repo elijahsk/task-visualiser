@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Tasks from "./components/Tasks.js";
+import TasksContainer from "./containers/TasksContainer.js";
 import SigninContainer from "./containers/SigninContainer.js";
 import SignupContainer from "./containers/SignupContainer.js";
 
@@ -40,7 +40,7 @@ ReactDOM.render(
 				</Half>
 				<hr />
 
-				<Route exact path="/tasks" component={Tasks} />
+				<Route exact path="/tasks" component={TasksContainer} />
 				<Route path="/signin" component={SigninContainer} />
 				<Route path="/signup" component={SignupContainer} />
 			</div>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TaskForm from "./TaskForm.js";
 import TaskList from "./TaskList.js";
 import Grid from "grid-styled";
+import { Redirect } from "react-router";
 
 export class Tasks extends Component {
   constructor(props) {
@@ -14,12 +15,13 @@ export class Tasks extends Component {
   render() {
     // console.log(this.props.tasks);
     // console.log("Tasks");
-    return (
-      <div>
-        <Grid><TaskForm addTask={this.props.addTask} /></Grid>
-        <Grid><TaskList tasks={this.props.tasks} /></Grid>
-      </div>
-    );
+    console.log(this.props.tasks);
+    return this.props.hasAuthed
+      ? <div>
+          <Grid><TaskForm addTask={this.props.addTask} /></Grid>
+          <Grid><TaskList tasks={this.props.tasks} /></Grid>
+        </div>
+      : <Redirect to="/signin" />;
   }
 }
 

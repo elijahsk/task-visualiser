@@ -3,9 +3,9 @@ import Tasks from "../components/Tasks.js";
 
 const mapStateToProps = state => {
   return {
-    tasks: state.tasks,
-    username: state.username,
-    hasAuthed: state.hasAuthed
+    tasks: state.taskReducer.tasks,
+    username: state.userReducer.username,
+    hasAuthed: state.userReducer.hasAuthed
   };
 };
 
