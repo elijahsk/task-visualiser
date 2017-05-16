@@ -28,7 +28,8 @@ class TaskForm extends Component {
     axios
       .post("http://localhost:9000/submitInfo", {
         data: {
-          title: this.state.taskName
+          title: this.state.taskName,
+          username: this.props.username
         }
       })
       .then(res => {

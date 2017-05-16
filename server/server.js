@@ -90,7 +90,8 @@ app.post("/submitInfo", (req, res) => {
 
 app.get("/taskList", (req, res) => {
 	console.log("taskList server before");
-	var query = Task.find();
+	var query = Task.find({ username: req.username });
+
 	query.exec(function(error, tasks) {
 		if (error) alert("Error in database data retrieval");
 		console.log(tasks, "taskList server");

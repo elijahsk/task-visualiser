@@ -18,8 +18,15 @@ export class Tasks extends Component {
     console.log(this.props.tasks);
     return this.props.hasAuthed
       ? <div>
-          <Grid><TaskForm addTask={this.props.addTask} /></Grid>
-          <Grid><TaskList tasks={this.props.tasks} /></Grid>
+          <Grid>
+            <TaskForm
+              addTask={this.props.addTask}
+              username={this.props.username}
+            />
+          </Grid>
+          <Grid>
+            <TaskList tasks={this.props.tasks} username={this.props.username} />
+          </Grid>
         </div>
       : <Redirect to="/signin" />;
   }
