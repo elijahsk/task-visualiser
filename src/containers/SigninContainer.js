@@ -3,15 +3,14 @@ import Signin from "../components/Signin.js";
 
 const mapStateToProps = state => {
   return {
-    username: state.username,
-    hasAuthed: state.hasAuthed
+    username: state.userReducer.username,
+    hasAuthed: state.userReducer.hasAuthed
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  signinUser: (username, password) => {
+  signinUser: username => {
     // console.log(task);
-    // console.log("addTask");
     return dispatch({
       type: "SIGNIN_USER",
       username: username

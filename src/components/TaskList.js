@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import ToggleTask from "./ToggleTask.js";
 import axios from "axios";
 import { Quarter } from "grid-styled";

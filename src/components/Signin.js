@@ -33,6 +33,7 @@ class Signin extends Component {
     event.preventDefault();
     console.log(this.state);
     this.props.signinUser(this.state.username);
+    console.log(this.props);
     // axios
     //   .post("http://localhost:9000/signin", {
     //     username: this.state.username,
