@@ -38,8 +38,10 @@ class Signup extends Component {
       .then(res => {
         console.log(res);
         alert("signup response");
-        if (res.status === 201) alert("Signup successfully");
-        else alert("Error in signup");
+        if (res.status === 201) {
+          this.props.signupUser(this.state.username, this.state.password);
+          alert("Signup successfully");
+        } else alert("Error in signup");
       })
       .catch(err => {
         console.log("xxx");
@@ -83,15 +85,11 @@ class Signup extends Component {
                 </td>
               </tr>
               <tr>
-                <td /><td>
-                  <StyledButton>
-                    Submit
-                  </StyledButton>
-                </td>
+                <td />
+                <td><StyledButton> Submit </StyledButton></td>
               </tr>
             </tbody>
           </table>
-
         </form>
       </Grid>
     );

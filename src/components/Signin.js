@@ -12,7 +12,8 @@ class Signin extends Component {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      hasAuthed: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -40,7 +41,10 @@ class Signin extends Component {
       .then(res => {
         console.log(res);
         if (res.status === 500) alert("Invalid username / password");
-        else alert("Signin successfully");
+        else
+          this.setState({
+            hasAuthed: true
+          });
       })
       .catch(err => {
         console.log(err);
@@ -48,39 +52,39 @@ class Signin extends Component {
       });
   }
   render() {
-    return (
-      <Grid>
-        <form onSubmit={this.handleSubmit}>
-          <table>
-            <tbody>
-              <tr>
-                <td>Username:</td>
-                <td>
-                  <input
-                    name="username"
-                    type="text"
-                    onChange={this.handleChange}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Password:
-                </td>
-                <td>
-                  <input
-                    name="password"
-                    type="password"
-                    onChange={this.handleChange}
-                  />
-                </td>
-              </tr>
-              <tr><td /><td><StyledButton> Submit </StyledButton></td></tr>
-            </tbody>
-          </table>
-        </form>
-      </Grid>
-    );
+    return this.state.hasAuthed
+      ? <Grid><p>You have signed in.</p></Grid>
+      : <Grid>
+          <form onSubmit={this.handleSubmit}>
+            <table>
+              <tbody>
+                <tr>
+                  <td>Username:</td>
+                  <td>
+                    <input
+                      name="username"
+                      type="text"
+                      onChange={this.handleChange}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Password:
+                  </td>
+                  <td>
+                    <input
+                      name="password"
+                      type="password"
+                      onChange={this.handleChange}
+                    />
+                  </td>
+                </tr>
+                <tr><td /><td><StyledButton> Submit </StyledButton></td></tr>
+              </tbody>
+            </table>
+          </form>
+        </Grid>;
   }
 }
 

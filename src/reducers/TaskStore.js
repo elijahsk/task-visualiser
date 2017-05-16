@@ -1,7 +1,4 @@
-import { createStore, compose, applyMiddleware } from "redux";
-import thunkMiddleware from "redux-thunk";
-
-const reducer = (state = { tasks: [] }, action) => {
+const taskReducer = (state = { tasks: [] }, action) => {
     console.log("action", action);
     switch (action.type) {
         case "CONCAT_TASKS": {
@@ -26,17 +23,4 @@ const reducer = (state = { tasks: [] }, action) => {
     }
 };
 
-// add support for Redux dev tools
-// for production app, should also include logic to exclude in prod builds
-const isBrowser = typeof window !== "undefined";
-const composeEnhancers = isBrowser
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    : compose;
-
-export const initStore = initialState => {
-    return createStore(
-        reducer, //pass in rootReducer for bigger applications
-        initialState,
-        composeEnhancers(applyMiddleware(thunkMiddleware))
-    );
-};
+export default taskReducer;

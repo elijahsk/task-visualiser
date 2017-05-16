@@ -1,9 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import TaskVisualiser from "./components/TaskVisualiser.js";
+import Tasks from "./components/Tasks.js";
 import Signin from "./components/Signin.js";
-import Signup from "./components/Signup.js";
+import SignupContainer from "./containers/SignupContainer.js";
+
+import { Provider } from "react-redux";
+import configureStore from "./reducers/CombineStore.js";
 
 import styled from "styled-components";
 import { Half, Third } from "grid-styled";
@@ -15,21 +18,33 @@ const Icon = styled(Link)`
 	color: black;
 	`;
 
-ReactDOM.render(
-	<Router>
-		<div>
-			<Half><Icon to="/tasks">Task Visualiser</Icon></Half>
-			<Half>
-				<Third> <Link to="/tasks">Home</Link> </Third>
-				<Third><Link to="/signin">Signin</Link></Third>
-				<Third><Link to="/signup">Signup</Link></Third>
-			</Half>
-			<hr />
+const initialState = {
+	taskReducer: {
+		tasks: []
+	},
+	userReducer: {
+		hasAuthed: false,
+		username: "Guest"
+	}
+};
 
-			<Route exact path="/tasks" component={TaskVisualiser} />
-			<Route path="/signin" component={Signin} />
-			<Route path="/signup" component={Signup} />
-		</div>
-	</Router>,
+ReactDOM.render(
+	<Provider store={configureStore(initialState)}>
+		<Router>
+			<div>
+				<Half><Icon to="/tasks">Task Visualiser</Icon></Half>
+				<Half>
+					<Third> <Link to="/tasks">Home</Link> </Third>
+					<Third><Link to="/signin">Signin</Link></Third>
+					<Third><Link to="/signup">Signup</Link></Third>
+				</Half>
+				<hr />
+
+				<Route exact path="/tasks" component={Tasks} />
+				<Route path="/signin" component={Signin} />
+				<Route path="/signup" component={SignupContainer} />
+			</div>
+		</Router>
+	</Provider>,
 	document.getElementById("root")
 );
