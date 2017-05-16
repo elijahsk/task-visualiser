@@ -1,5 +1,12 @@
 import React from "react";
 import EditTaskContainer from "../containers/EditTaskContainer.js";
+import styled from "styled-components";
+
+const StyledTask = styled.p`
+  font-size: 20px;
+  &:hover {
+    text-decoration: underline;
+  }`;
 
 class ToggleTask extends React.Component {
   constructor(props) {
@@ -24,7 +31,11 @@ class ToggleTask extends React.Component {
         <EditTaskContainer task={this.props.task} index={this.props.index} />
       );
     } else {
-      return <p onClick={this.handleToggle}>{this.props.task}</p>;
+      return (
+        <StyledTask onClick={this.handleToggle}>
+          {this.props.task}
+        </StyledTask>
+      );
     }
   }
 }

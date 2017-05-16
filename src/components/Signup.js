@@ -1,6 +1,11 @@
 import React, { Component } from "react";
-
+import Grid from "grid-styled";
 import axios from "axios";
+import styled from "styled-components";
+
+const StyledButton = styled.button`
+  float:right;
+`;
 
 class Signup extends Component {
   constructor(props) {
@@ -28,7 +33,7 @@ class Signup extends Component {
     axios
       .post("http://localhost:9000/signup", {
         username: this.state.username,
-        password: this.state.password // need to encrypt
+        password: this.state.password
       })
       .then(res => {
         console.log(res);
@@ -43,27 +48,52 @@ class Signup extends Component {
   }
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Username:
-          <input name="username" type="text" onChange={this.handleChange} />
-        </label>
-        <label>
-          Password:
-          <input name="password" type="password" onChange={this.handleChange} />
-        </label>
-        <label>
-          Repeat:
-          <input
-            name="passwordRepeat"
-            type="password"
-            onChange={this.handleChange}
-          />
-        </label>
-        <button>
-          Submit
-        </button>
-      </form>
+      <Grid>
+        <form onSubmit={this.handleSubmit}>
+          <table>
+            <tbody>
+              <tr>
+                <td>Username:</td>
+                <td>
+                  <input
+                    name="username"
+                    type="text"
+                    onChange={this.handleChange}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Password:</td>
+                <td>
+                  <input
+                    name="password"
+                    type="password"
+                    onChange={this.handleChange}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Repeat Password:</td>
+                <td>
+                  <input
+                    name="passwordRepeat"
+                    type="password"
+                    onChange={this.handleChange}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td /><td>
+                  <StyledButton>
+                    Submit
+                  </StyledButton>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </form>
+      </Grid>
     );
   }
 }

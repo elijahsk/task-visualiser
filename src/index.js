@@ -4,18 +4,26 @@ import ReactDOM from "react-dom";
 import TaskVisualiser from "./components/TaskVisualiser.js";
 import Signin from "./components/Signin.js";
 import Signup from "./components/Signup.js";
-import "./index.css";
+
+import styled from "styled-components";
+import { Half, Third } from "grid-styled";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+const Icon = styled(Link)`
+	font-size: 20px;
+	text-decoration: none;
+	color: black;
+	`;
 
 ReactDOM.render(
 	<Router>
 		<div>
-			<ul>
-				<li><Link to="/tasks">Home</Link></li>
-				<li><Link to="/signin">Signin</Link></li>
-				<li><Link to="/signup">Signup</Link></li>
-			</ul>
-
+			<Half><Icon to="/tasks">Task Visualiser</Icon></Half>
+			<Half>
+				<Third> <Link to="/tasks">Home</Link> </Third>
+				<Third><Link to="/signin">Signin</Link></Third>
+				<Third><Link to="/signup">Signup</Link></Third>
+			</Half>
 			<hr />
 
 			<Route exact path="/tasks" component={TaskVisualiser} />

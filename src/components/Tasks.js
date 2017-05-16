@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TaskForm from "./TaskForm.js";
 import TaskList from "./TaskList.js";
+import Grid from "grid-styled";
 
 export class Tasks extends Component {
   constructor(props) {
@@ -15,8 +16,8 @@ export class Tasks extends Component {
     // console.log("Tasks");
     return (
       <div>
-        <TaskForm addTask={this.props.addTask} />
-        <TaskList tasks={this.props.tasks} />
+        <Grid><TaskForm addTask={this.props.addTask} /></Grid>
+        <Grid><TaskList tasks={this.props.tasks} /></Grid>
       </div>
     );
   }

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import ToggleTask from "./ToggleTask.js";
 import axios from "axios";
+import { Quarter } from "grid-styled";
 
 const mapStateToProps = state => {
   return {
@@ -49,11 +50,11 @@ class TaskList extends React.Component {
       <div>
         {tasks.map((task, index) => {
           return (
-            <div key={index}>
+            <Quarter key={index}>
               <ToggleTask task={task} index={index} />
-            </div>
+            </Quarter>
           );
-        })};
+        })}
       </div>
     );
   }

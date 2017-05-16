@@ -1,5 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Grid from "grid-styled";
+import styled from "styled-components";
+
+const StyledButton = styled.button`
+  float:right;
+`;
 
 class Signin extends Component {
   constructor(props) {
@@ -43,17 +49,37 @@ class Signin extends Component {
   }
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Username:
-          <input name="username" type="text" onChange={this.handleChange} />
-        </label>
-        <label>
-          Password:
-          <input name="password" type="password" onChange={this.handleChange} />
-        </label>
-        <button> Submit </button>
-      </form>
+      <Grid>
+        <form onSubmit={this.handleSubmit}>
+          <table>
+            <tbody>
+              <tr>
+                <td>Username:</td>
+                <td>
+                  <input
+                    name="username"
+                    type="text"
+                    onChange={this.handleChange}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Password:
+                </td>
+                <td>
+                  <input
+                    name="password"
+                    type="password"
+                    onChange={this.handleChange}
+                  />
+                </td>
+              </tr>
+              <tr><td /><td><StyledButton> Submit </StyledButton></td></tr>
+            </tbody>
+          </table>
+        </form>
+      </Grid>
     );
   }
 }
