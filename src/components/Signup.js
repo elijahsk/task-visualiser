@@ -12,7 +12,8 @@ class Signup extends Component {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      passwordRepeat: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -30,23 +31,27 @@ class Signup extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios
-      .post("http://localhost:9000/signup", {
-        username: this.state.username,
-        password: this.state.password
-      })
-      .then(res => {
-        console.log(res);
-        alert("signup response");
-        if (res.status === 201) {
-          this.props.signupUser(this.state.username);
-          alert("Signup successfully");
-        } else alert("Error in signup");
-      })
-      .catch(err => {
-        console.log("xxx");
-        alert("there is an error!");
-      });
+    if (this.state.password === this.state.passwordRepeat) {
+      axios
+        .post("http://localhost:9000/signup", {
+          username: this.state.username,
+          password: this.state.password
+        })
+        .then(res => {
+          console.log(res);
+          alert("signup response");
+          if (res.status === 201) {
+            this.props.signupUser(this.state.username);
+            alert("Signup successfully");
+          } else alert("Error in signup");
+        })
+        .catch(err => {
+          console.log("xxx");
+          alert("there is an error!");
+        });
+    } else {
+      alert("Passwords are different!");
+    }
   }
   render() {
     return (
@@ -61,6 +66,7 @@ class Signup extends Component {
                     name="username"
                     type="text"
                     onChange={this.handleChange}
+                    required
                   />
                 </td>
               </tr>
@@ -71,6 +77,7 @@ class Signup extends Component {
                     name="password"
                     type="password"
                     onChange={this.handleChange}
+                    required
                   />
                 </td>
               </tr>
@@ -81,6 +88,7 @@ class Signup extends Component {
                     name="passwordRepeat"
                     type="password"
                     onChange={this.handleChange}
+                    required
                   />
                 </td>
               </tr>

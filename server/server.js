@@ -53,29 +53,6 @@ app.all("*", (req, res, next) => {
 	next();
 });
 
-// app.post("/submitSignup", (req, res) => {
-// 	User.create(Object.assign({}, req.body.data))
-// 		.then(data => {
-// 			console.log(data);
-// 			res.sendStatus(200);
-// 		})
-// 		.catch(err => {
-// 			console.log(err);
-// 			res.sendStatus(500);
-// 		});
-// });
-
-// app.post("/submitSignin", (req, res) => {
-// 	var query = User.find({ username: req.signupUsername });
-// 	query.exec(function(error, user) {
-// 		if (error) alert("Error in database data retrieval");
-// 		console.log(user, "taskList server");
-// 		if (user === undefined || req.signupPassword !== user.password)
-// 			res.sendStatus(500);
-// 		else res.sendStatus(200);
-// 	});
-// });
-
 app.post("/submitInfo", (req, res) => {
 	Task.create(Object.assign({}, req.body.data))
 		.then(data => {
@@ -99,15 +76,8 @@ app.get("/taskList", (req, res) => {
 	});
 });
 
-//app.<method>(<address>, <function>);
-// method - GET, POST, UPDATE, PUT, DELETE (check REST api)
-// address - "/", "/user/7347349", "/matches"
 app.get("/", (req, res) => {
 	res.json({ msg: "its the root" });
-});
-
-app.get("/user", (req, res) => {
-	res.json({ user: req.user });
 });
 
 //app.listen(<port number>, <do something after successfully listening to port>)

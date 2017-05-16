@@ -31,9 +31,8 @@ class Signin extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
-    // this.props.signinUser(this.state.username);
-    // console.log(this.props);
+    //this.props.signinUser(this.state.username);
+    console.log(this.props);
     axios
       .post("http://localhost:9000/signin", {
         username: this.state.username,
@@ -64,6 +63,7 @@ class Signin extends Component {
                       name="username"
                       type="text"
                       onChange={this.handleChange}
+                      required
                     />
                   </td>
                 </tr>
@@ -76,6 +76,7 @@ class Signin extends Component {
                       name="password"
                       type="password"
                       onChange={this.handleChange}
+                      required
                     />
                   </td>
                 </tr>
