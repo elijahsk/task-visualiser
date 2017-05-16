@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import Tasks from "./components/Tasks.js";
-import Signin from "./components/Signin.js";
+import SigninContainer from "./containers/SigninContainer.js";
 import SignupContainer from "./containers/SignupContainer.js";
 
 import { Provider } from "react-redux";
@@ -41,7 +41,7 @@ ReactDOM.render(
 				<hr />
 
 				<Route exact path="/tasks" component={Tasks} />
-				<Route path="/signin" component={Signin} />
+				<Route path="/signin" component={SigninContainer} />
 				<Route path="/signup" component={SignupContainer} />
 			</div>
 		</Router>

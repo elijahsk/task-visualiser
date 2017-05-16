@@ -39,7 +39,7 @@ class Signup extends Component {
         console.log(res);
         alert("signup response");
         if (res.status === 201) {
-          this.props.signupUser(this.state.username, this.state.password);
+          this.props.signupUser(this.state.username);
           alert("Signup successfully");
         } else alert("Error in signup");
       })

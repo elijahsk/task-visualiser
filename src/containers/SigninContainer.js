@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Signup from "../components/Signup.js";
+import Signin from "../components/Signin.js";
 
 const mapStateToProps = state => {
   return {
@@ -9,16 +9,16 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  signupUser: (username, password) => {
+  signinUser: (username, password) => {
     // console.log(task);
     // console.log("addTask");
     return dispatch({
-      type: "SIGNUP_USER",
+      type: "SIGNIN_USER",
       username: username
     });
   }
 });
 
-const SignupContainer = connect(mapStateToProps, mapDispatchToProps)(Signup);
+const SigninContainer = connect(mapStateToProps, mapDispatchToProps)(Signin);
 
-export default SignupContainer;
+export default SigninContainer;

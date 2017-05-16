@@ -41,10 +41,7 @@ class Signin extends Component {
       .then(res => {
         console.log(res);
         if (res.status === 500) alert("Invalid username / password");
-        else
-          this.setState({
-            hasAuthed: true
-          });
+        else this.props.signupUser(this.state.username);
       })
       .catch(err => {
         console.log(err);
