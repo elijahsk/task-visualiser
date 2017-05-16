@@ -4,23 +4,6 @@ import ToggleTask from "./ToggleTask.js";
 import axios from "axios";
 import { Quarter } from "grid-styled";
 
-const mapStateToProps = state => {
-  return {
-    tasks: state.tasks
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  concatTasks: tasks => {
-    // console.log(task);
-    // console.log("addTask");
-    return dispatch({
-      type: "CONCAT_TASKS",
-      tasks: tasks
-    });
-  }
-});
-
 class TaskList extends React.Component {
   constructor(props) {
     super(props);
@@ -60,4 +43,4 @@ class TaskList extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
+export default TaskList;

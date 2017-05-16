@@ -32,21 +32,22 @@ class Signin extends Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log(this.state);
-    axios
-      .post("http://localhost:9000/signin", {
-        username: this.state.username,
-        password: this.state.password,
-        withCredentials: true
-      })
-      .then(res => {
-        console.log(res);
-        if (res.status === 500) alert("Invalid username / password");
-        else this.props.signupUser(this.state.username);
-      })
-      .catch(err => {
-        console.log(err);
-        alert("there is an error!");
-      });
+    this.props.signinUser(this.state.username);
+    // axios
+    //   .post("http://localhost:9000/signin", {
+    //     username: this.state.username,
+    //     password: this.state.password,
+    //     withCredentials: true
+    //   })
+    //   .then(res => {
+    //     console.log(res);
+    //     if (res.status === 500) alert("Invalid username / password");
+    //     else this.props.signinUser(this.state.username);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //     alert("there is an error!");
+    //   });
   }
   render() {
     return this.state.hasAuthed

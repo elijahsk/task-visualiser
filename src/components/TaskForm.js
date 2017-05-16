@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Redirect } from "react-router";
 
 class TaskForm extends Component {
   constructor(props) {
@@ -42,26 +43,26 @@ class TaskForm extends Component {
 
   render() {
     //console.log(this.state);
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <table>
-          <tbody>
-            <tr>
-              <td>Task Name</td>
-              <td>
-                <input
-                  name="taskName"
-                  type="text"
-                  value={this.state.taskName}
-                  onChange={this.handleChange}
-                />
-              </td>
-              <td> <button> Submit </button> </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
-    );
+    return this.props.hasAuthed
+      ? <form onSubmit={this.handleSubmit}>
+          <table>
+            <tbody>
+              <tr>
+                <td>Task Name</td>
+                <td>
+                  <input
+                    name="taskName"
+                    type="text"
+                    value={this.state.taskName}
+                    onChange={this.handleChange}
+                  />
+                </td>
+                <td> <button> Submit </button> </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      : <Redirect to="/signin" />;
   }
 }
 
