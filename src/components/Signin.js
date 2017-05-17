@@ -7,6 +7,12 @@ const StyledButton = styled.button`
   float:right;
 `;
 
+let instance = axios.create({
+  baseURL: "http://localhost:9000",
+  timeout: 3000,
+  withCredentials: true
+});
+
 class Signin extends Component {
   constructor(props) {
     super(props);
@@ -33,19 +39,19 @@ class Signin extends Component {
     event.preventDefault();
     //this.props.signinUser(this.state.username);
     console.log(this.props);
-    axios
+
+    instance
       .post("http://localhost:9000/signin", {
         username: this.state.username,
-        password: this.state.password,
-        withCredentials: true
+        password: this.state.password
       })
       .then(res => {
-        console.log(res);
+        //console.log(res);
         if (res.status === 500) alert("Invalid username / password");
         else this.props.signinUser(this.state.username);
       })
       .catch(err => {
-        console.log(err);
+        //console.log(err);
         alert("there is an error!");
       });
   }

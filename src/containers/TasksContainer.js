@@ -26,6 +26,11 @@ const mapDispatchToProps = dispatch => ({
       taskName: task,
       index: index
     });
+  },
+  clearTasks: () => {
+    return dispatch({
+      type: "CLEAR_TASKS"
+    });
   }
 });
 

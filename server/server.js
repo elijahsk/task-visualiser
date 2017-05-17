@@ -18,8 +18,8 @@ let corsOptions = {
 };
 
 var store = new MongoDBStore({
-	uri: "mongodb://192.168.99.100:27017/user",
-	collection: "Sessions"
+	uri: "mongodb://192.168.99.100:27017/temp",
+	collection: "sessions"
 });
 
 let sessionOptions = {
@@ -31,14 +31,6 @@ let sessionOptions = {
 };
 
 app.use(cors(corsOptions));
-// app.use(function(req, res, next) {
-// 	res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-// 	res.header(
-// 		"Access-Control-Allow-Headers",
-// 		"Origin, X-Requested-With, Content-Type, Accept"
-// 	);
-// 	next();
-// });
 app.options("*", cors(corsOptions)); // include before other routes
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -55,7 +47,26 @@ app.all("*", (req, res, next) => {
 
 app.post("/submitInfo", (req, res) => {
 	console.log(req);
+	console.log(req.body.data, "submitInfo server");
 	Task.create(Object.assign({}, req.body.data))
+		.then(data => {
+			console.log(data);
+			res.sendStatus(200);
+		})
+		.catch(err => {
+			console.log(err);
+			res.sendStatus(500);
+		});
+});
+
+app.post("/editTask", (req, res) => {
+	console.log(req.body.data);
+	var query = {
+		username: req.user.username,
+		title: req.body.data.oldTitle
+	};
+	console.log(query);
+	Task.findOneAndUpdate(query, { title: req.body.data.title })
 		.then(data => {
 			console.log(data);
 			res.sendStatus(200);
@@ -68,12 +79,14 @@ app.post("/submitInfo", (req, res) => {
 
 app.get("/taskList", (req, res) => {
 	console.log(req.user, "taskList server");
-	var query = Task.find({ username: req.user });
+	var query = Task.find({ username: req.user.username });
 
 	query.exec(function(error, tasks) {
-		if (error) alert("Error in database data retrieval");
-		console.log(tasks, "taskList server");
-		res.json(tasks);
+		if (error) {
+			console.log("There is an error");
+		} else {
+			res.json(tasks);
+		}
 	});
 });
 

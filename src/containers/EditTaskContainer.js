@@ -3,7 +3,8 @@ import EditTask from "../components/EditTask.js";
 
 const mapStateToProps = state => {
   return {
-    tasks: state.tasks
+    tasks: state.tasks,
+    username: state.username
   };
 };
 

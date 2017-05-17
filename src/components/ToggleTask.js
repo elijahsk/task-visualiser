@@ -28,7 +28,11 @@ class ToggleTask extends React.Component {
 
     if (isEditing) {
       return (
-        <EditTaskContainer task={this.props.task} index={this.props.index} />
+        <EditTaskContainer
+          task={this.props.task}
+          index={this.props.index}
+          handleToggle={this.handleToggle}
+        />
       );
     } else {
       return (

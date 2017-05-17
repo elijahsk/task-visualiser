@@ -17,14 +17,14 @@ class TaskList extends React.Component {
 
   componentDidMount() {
     console.log("Did mount test", this.props);
-
     instance
       .get("http://localhost:9000/taskList")
       .then(response => {
         console.log(response, "Did mount");
         const tasks = response.data;
         console.log(tasks);
-        this.props.concatTasks(tasks.map(task => task.title));
+        //this.props.clearTasks();
+        this.props.updateTasks(tasks.map(task => task.title));
       })
       .catch(function(error) {
         console.log(error);

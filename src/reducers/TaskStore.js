@@ -7,6 +7,11 @@ const taskReducer = (state = { tasks: [] }, action) => {
                 tasks: tasks.concat(state.tasks)
             };
         }
+        case "CLEAR_TASKS": {
+            return {
+                tasks: []
+            };
+        }
         case "ADD_TASK":
             return {
                 tasks: state.tasks.concat(action.taskName)

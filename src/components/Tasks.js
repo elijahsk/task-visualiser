@@ -10,11 +10,15 @@ export class Tasks extends Component {
     this.state = {
       tasks: []
     };
-    this.concatTasks = this.concatTasks.bind(this);
+    this.updateTasks = this.updateTasks.bind(this);
   }
 
-  concatTasks(tasks) {
+  updateTasks(tasks) {
     console.log(tasks, "from tasklist");
+    this.props.clearTasks();
+    tasks.forEach(element => {
+      this.props.addTask({ taskName: element });
+    });
   }
 
   render() {
@@ -32,7 +36,8 @@ export class Tasks extends Component {
           <Grid>
             <TaskList
               tasks={this.props.tasks}
-              concatTasks={this.concatTasks}
+              clearTasks={this.props.clearTasks}
+              updateTasks={this.updateTasks}
               username={this.props.username}
             />
           </Grid>
