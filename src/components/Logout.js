@@ -15,12 +15,15 @@ class Logout extends React.Component {
       .get("http://localhost:9000/logout")
       .then(response => {
         console.log(response, "Will mount");
-        this.props.logout();
-        return <Redirect to="/signin" />;
+        this.props.logoutUser();
       })
       .catch(function(error) {
         console.log(error);
       });
+  }
+
+  render() {
+    return <Redirect to="/signin" />;
   }
 }
 

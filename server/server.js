@@ -18,7 +18,7 @@ let corsOptions = {
 };
 
 var store = new MongoDBStore({
-	uri: "mongodb://192.168.1.112:27017/user",
+	uri: "mongodb://192.168.99.100:27017/user",
 	collection: "Sessions"
 });
 
@@ -31,14 +31,14 @@ let sessionOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use(function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header(
-		"Access-Control-Allow-Headers",
-		"Origin, X-Requested-With, Content-Type, Accept"
-	);
-	next();
-});
+// app.use(function(req, res, next) {
+// 	res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+// 	res.header(
+// 		"Access-Control-Allow-Headers",
+// 		"Origin, X-Requested-With, Content-Type, Accept"
+// 	);
+// 	next();
+// });
 app.options("*", cors(corsOptions)); // include before other routes
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -54,6 +54,7 @@ app.all("*", (req, res, next) => {
 });
 
 app.post("/submitInfo", (req, res) => {
+	console.log(req);
 	Task.create(Object.assign({}, req.body.data))
 		.then(data => {
 			console.log(data);
@@ -66,8 +67,8 @@ app.post("/submitInfo", (req, res) => {
 });
 
 app.get("/taskList", (req, res) => {
-	console.log("taskList server before");
-	var query = Task.find({ username: req.username });
+	console.log(req.user, "taskList server");
+	var query = Task.find({ username: req.user });
 
 	query.exec(function(error, tasks) {
 		if (error) alert("Error in database data retrieval");
@@ -77,6 +78,7 @@ app.get("/taskList", (req, res) => {
 });
 
 app.get("/", (req, res) => {
+	console.log("req.user", req.user);
 	res.json({ msg: "its the root" });
 });
 
@@ -85,9 +87,9 @@ app.listen(9000, function() {
 	console.log("Example app listening on port 9000!");
 });
 
-passport.serializeUser(function(id, cb) {
+passport.serializeUser(function(user, cb) {
 	console.log("serializeUser()");
-	cb(null, id);
+	cb(null, user._id);
 });
 
 passport.deserializeUser(function(id, cb) {

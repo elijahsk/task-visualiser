@@ -81,8 +81,9 @@ passport.use(
 						});
 					} else {
 						console.log(user);
-						if (password === user.password) return done(null, user);
-						else
+						if (password === user.password) {
+							return done(null, user);
+						} else
 							return done(null, false, {
 								message: "Wrong password"
 							});
@@ -107,7 +108,7 @@ passport.use(
 		}
 	)
 );
-// =============================================
+
 router.post(
 	"/signup",
 	(req, res, next) => {
@@ -119,6 +120,7 @@ router.post(
 		res.sendStatus(201);
 	}
 );
+
 router.post(
 	"/signin",
 	(req, res, next) => {

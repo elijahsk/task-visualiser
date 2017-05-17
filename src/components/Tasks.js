@@ -10,6 +10,11 @@ export class Tasks extends Component {
     this.state = {
       tasks: []
     };
+    this.concatTasks = this.concatTasks.bind(this);
+  }
+
+  concatTasks(tasks) {
+    console.log(tasks, "from tasklist");
   }
 
   render() {
@@ -25,7 +30,11 @@ export class Tasks extends Component {
             />
           </Grid>
           <Grid>
-            <TaskList tasks={this.props.tasks} username={this.props.username} />
+            <TaskList
+              tasks={this.props.tasks}
+              concatTasks={this.concatTasks}
+              username={this.props.username}
+            />
           </Grid>
         </div>
       : <Redirect to="/signin" />;

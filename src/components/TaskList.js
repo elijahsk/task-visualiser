@@ -3,6 +3,12 @@ import ToggleTask from "./ToggleTask.js";
 import axios from "axios";
 import { Quarter } from "grid-styled";
 
+let instance = axios.create({
+  baseURL: "http://localhost:9000",
+  timeout: 3000,
+  withCredentials: true
+});
+
 class TaskList extends React.Component {
   constructor(props) {
     super(props);
@@ -12,7 +18,7 @@ class TaskList extends React.Component {
   componentDidMount() {
     console.log("Did mount test", this.props);
 
-    axios
+    instance
       .get("http://localhost:9000/taskList")
       .then(response => {
         console.log(response, "Did mount");

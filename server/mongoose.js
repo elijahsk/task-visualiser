@@ -15,7 +15,7 @@ let options = Object.assign({
 	}
 });
 
-let host = "192.168.1.112";
+let host = "192.168.99.100";
 
 mongoose.connect("mongodb://" + host + "/temp", options);
 
