@@ -1,12 +1,6 @@
 import React from "react";
 import axios from "axios";
 
-let instance = axios.create({
-  baseURL: "http://localhost:9000",
-  timeout: 3000,
-  withCredentials: true
-});
-
 class EditTask extends React.Component {
   constructor(props) {
     super(props);
